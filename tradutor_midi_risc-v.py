@@ -3,7 +3,7 @@ import os
 import platform as p
 FOLDER_PATH = dir_path = os.path.dirname(os.path.realpath(__file__))
 
-mid = mido.MidiFile('MIDI file')
+mid = mido.MidiFile('O seu arquivo MIDI')
 y = open("result.txt", "w")
 
 nlista = []
