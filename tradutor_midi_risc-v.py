@@ -16,10 +16,14 @@ with open("result.data", "w") as f:
             if msg.type == 'set_tempo':
                 tempo = msg.tempo
         
-        currenttrack = f"{len(nlista)}"
+        count = 0
+        currenttrack = ''
         for j in range(len(nlista)):
+            if (plista[j] == 0):
+                continue
             currenttrack += ", " + str(nlista[j]) + ", " + str(plista[j])
-        currenttrack = f"Track{i}: .word {currenttrack} \n\n"
+            count += 1
+        currenttrack = f"Track{i}: .word {count}{currenttrack} \n\n"
         f.write(currenttrack)
 
 print("Done!")
