@@ -23,7 +23,7 @@ with open("result.data", "w") as f:
                 continue
             currenttrack += ", " + str(nlista[j]) + ", " + str(plista[j])
             count += 1
-        currenttrack = f"Track{i}: .word 127, 1, {count}{currenttrack} \n\n"
+        currenttrack = f"Track{i}: .word {count}{currenttrack} \n\n"
         f.write(currenttrack)
 
 print("Done!")
