@@ -15,6 +15,8 @@ mid = mido.MidiFile(input_path)
 filename = sys.argv[1].split("/")[-1].replace(".mid", ".data")
 
 with open(filename, "w") as f:
+    name = filename.strip(".data").replace("-", "_")
+
     for i, track in enumerate(mid.tracks):
         nlista = []
         plista = []
@@ -32,7 +34,7 @@ with open(filename, "w") as f:
                 continue
             currenttrack += ", " + str(nlista[j]) + ", " + str(plista[j])
             count += 1
-        currenttrack = f"Track{i}: .word {count}{currenttrack} \n\n"
+        currenttrack = f"{name}_track{i}: .word {count}{currenttrack} \n\n"
         f.write(currenttrack)
 
 print("Done!")
