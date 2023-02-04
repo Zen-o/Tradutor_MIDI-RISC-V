@@ -5,7 +5,9 @@ import platform as p
 FOLDER_PATH = os.path.dirname(os.path.realpath(__file__))
 
 mid = mido.MidiFile(FOLDER_PATH + sys.argv[1])
-with open("result.data", "w") as f:
+filename = sys.argv[1].split("/")[-1].replace(".mid", ".data")
+
+with open(filename, "w") as f:
     for i, track in enumerate(mid.tracks):
         nlista = []
         plista = []
