@@ -4,7 +4,14 @@ import sys
 import platform as p
 FOLDER_PATH = os.path.dirname(os.path.realpath(__file__))
 
-mid = mido.MidiFile(FOLDER_PATH + sys.argv[1])
+input_path = FOLDER_PATH + sys.argv[1]
+
+if not os.path.isfile(input_path):
+    raise Exception("ERROR: The input path is doesn't exist.")
+if not input_path.endswith(".mid"):
+    raise Exception("ERROR: The given file isn't .mid")
+
+mid = mido.MidiFile(input_path)
 filename = sys.argv[1].split("/")[-1].replace(".mid", ".data")
 
 with open(filename, "w") as f:
