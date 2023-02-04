@@ -4,8 +4,19 @@ import sys
 import platform as p
 FOLDER_PATH = os.path.dirname(os.path.realpath(__file__))
 
-mid = mido.MidiFile(FOLDER_PATH + sys.argv[1])
-with open("result.data", "w") as f:
+input_path = FOLDER_PATH + sys.argv[1]
+
+if not os.path.isfile(input_path):
+    raise Exception("ERROR: The input path is doesn't exist.")
+if not input_path.endswith(".mid"):
+    raise Exception("ERROR: The given file isn't .mid")
+
+mid = mido.MidiFile(input_path)
+filename = sys.argv[1].split("/")[-1].replace(".mid", ".data")
+
+with open(filename, "w") as f:
+    name = filename.strip(".data").replace("-", "_")
+
     for i, track in enumerate(mid.tracks):
         nlista = []
         plista = []
@@ -23,7 +34,7 @@ with open("result.data", "w") as f:
                 continue
             currenttrack += ", " + str(nlista[j]) + ", " + str(plista[j])
             count += 1
-        currenttrack = f"Track{i}: .word {count}{currenttrack} \n\n"
+        currenttrack = f"{name}_track{i}: .word {count}{currenttrack} \n\n"
         f.write(currenttrack)
 
 print("Done!")
