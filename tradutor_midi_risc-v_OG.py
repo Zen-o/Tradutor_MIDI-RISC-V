@@ -24,3 +24,4 @@ for i in range(len(nlista)):
     y.write("," + str(nlista[i]) + "," + str(plista[i]))
     
 notas = len(nlista)
+print("\n"+ "Numero de Notas:" + str(notas))
